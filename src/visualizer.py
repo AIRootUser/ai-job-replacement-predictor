@@ -152,36 +152,47 @@ class JobVisualizer:
         return output_path
     
     def create_heatmap(self) -> str:
-        """创建类别 - 职业热力图"""
+        """创建职业替代率热力图 - 展示每个职业的替代概率"""
+        # 准备数据：每个职业一行，显示替代率
         data = []
         for r in self.results:
             cat_en = self.category_en.get(r['category'], r['category'])
-            data.append({'job': r['name'], 'category': cat_en, 'prob': r['probability']})
+            data.append({
+                'Job': r['name'],
+                'Category': cat_en,
+                'Probability': r['probability'],
+                'Risk': 'High' if r['probability'] >= 60 else 'Medium' if r['probability'] >= 30 else 'Low'
+            })
         df = pd.DataFrame(data)
         
-        # 按类别和概率排序
-        df = df.sort_values(['category', 'prob'], ascending=[True, False])
+        # 按概率降序排序
+        df = df.sort_values('Probability', ascending=False)
         
-        # 创建透视表
-        pivot_table = df.pivot(index='job', columns='category', values='prob')
+        # 创建透视表：职业为行，单列显示概率
+        pivot_data = df.set_index('Job')['Probability'].to_frame()
         
-        fig, ax = plt.subplots(figsize=(14, 10))
+        fig, ax = plt.subplots(figsize=(12, 18))
         
+        # 自定义配色
         cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
-            'custom_risk',
+            'risk_heatmap',
             [COLORS['low'], '#fbbf24', COLORS['high']],
             N=100
         )
         
-        sns.heatmap(pivot_table.T, annot=False, cmap=cmap,
+        # 热力图 - 显示数值
+        sns.heatmap(pivot_data, annot=True, fmt='.0f', cmap=cmap,
                    vmin=0, vmax=100, center=50,
-                   cbar_kws={'label': 'Probability (%)', 'shrink': 0.8},
-                   linewidths=0.5, linecolor='white',
-                   ax=ax)
+                   cbar_kws={'label': 'Replacement Probability (%)', 'shrink': 0.8},
+                   linewidths=0.5, linecolor='gray',
+                   ax=ax, annot_kws={'size': 9, 'weight': 'bold'})
         
-        ax.set_title(self.labels['title_heatmap'], fontsize=14, fontweight='bold', pad=15)
-        ax.set_xlabel('Jobs', fontsize=11)
-        ax.set_ylabel(self.labels['category'], fontsize=11)
+        ax.set_title('Job AI Replacement Probability Heatmap', fontsize=15, fontweight='bold', pad=20)
+        ax.set_xlabel('Probability (%)', fontsize=11)
+        ax.set_ylabel('Job', fontsize=11)
+        
+        # 旋转 Y 轴标签为水平
+        plt.yticks(rotation=0, fontsize=8)
         
         plt.tight_layout()
         output_path = os.path.join(self.output_dir, 'job_replacement_heatmap.png')
