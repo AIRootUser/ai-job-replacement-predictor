@@ -17,37 +17,35 @@ import os
 
 # 现代配色方案
 COLORS = {
-    'low': '#10b981',      # 翠绿 - 低风险
-    'medium': '#f59e0b',   # 琥珀 - 中风险
-    'high': '#ef4444',     # 红 - 高风险
+    'low': '#10b981',
+    'medium': '#f59e0b',
+    'high': '#ef4444',
     'bg': '#ffffff',
     'grid': '#e5e7eb',
     'text': '#1f2937',
     'text_light': '#6b7280'
 }
 
-# 设置中文字体
+# 设置中文字体 - macOS 优先使用苹方
 def setup_chinese_font():
     """设置中文字体支持"""
-    chinese_fonts = [
-        'PingFang SC',
-        'Microsoft YaHei',
-        'SimHei',
-        'Heiti TC',
-        'Noto Sans CJK SC'
-    ]
+    # macOS 系统字体
+    if os.name == 'posix' and 'Darwin' in os.popen('uname -a').read():
+        font_list = ['PingFang SC', 'Heiti SC', 'STHeiti', 'Arial Unicode MS']
+    else:
+        font_list = ['Microsoft YaHei', 'SimHei', 'WenQuanYi Micro Hei']
     
-    for font in chinese_fonts:
+    for font in font_list:
         try:
             matplotlib.rcParams['font.sans-serif'] = [font]
             matplotlib.rcParams['axes.unicode_minus'] = False
-            matplotlib.rcParams['font.size'] = 10
             return font
         except:
             continue
     
+    # 最后方案：使用英文标签
     matplotlib.rcParams['font.sans-serif'] = ['DejaVu Sans']
-    return 'DejaVu Sans'
+    return None
 
 
 class JobVisualizer:
@@ -59,9 +57,35 @@ class JobVisualizer:
         os.makedirs(output_dir, exist_ok=True)
         self.font = setup_chinese_font()
         
-        # 设置现代样式
-        plt.style.use('seaborn-v0_8-whitegrid')
-        sns.set_palette([COLORS['low'], COLORS['medium'], COLORS['high']])
+        # 使用英文标签（避免字体问题）
+        self.labels = {
+            'title_cloud': 'AI Job Replacement Probability',
+            'title_heatmap': 'Probability by Category',
+            'title_bar': 'Average Risk by Category',
+            'title_dist': 'Probability Distribution',
+            'x_prob': 'Replacement Probability (%)',
+            'x_avg': 'Average Probability (%)',
+            'y_jobs': 'Jobs',
+            'y_count': 'Number of Jobs',
+            'low_risk': 'Low Risk',
+            'mid_risk': 'Medium Risk',
+            'high_risk': 'High Risk',
+            'category': 'Category'
+        }
+        
+        # 类别英文映射
+        self.category_en = {
+            '行政': 'Admin',
+            '服务': 'Service',
+            '技术': 'Tech',
+            '医疗': 'Healthcare',
+            '创意': 'Creative',
+            '教育': 'Education',
+            '金融': 'Finance',
+            '制造': 'Manufacturing',
+            '销售': 'Sales',
+            '法律': 'Legal'
+        }
         
     def create_cloud_map(self) -> str:
         """创建职业替代概率散点图"""
@@ -69,50 +93,56 @@ class JobVisualizer:
         probs = [r['probability'] for r in self.results]
         categories = [r['category'] for r in self.results]
         
-        # 颜色映射
         colors = [COLORS['low'] if p < 30 else COLORS['medium'] if p < 60 else COLORS['high'] for p in probs]
         
-        fig, ax = plt.subplots(figsize=(14, 16))
+        fig, ax = plt.subplots(figsize=(14, 12))
         
-        # 按类别分组绘制
+        # 按类别分组
         unique_categories = sorted(set(categories))
-        y_positions = {}
         y_current = 0
         
         for cat in unique_categories:
+            cat_en = self.category_en.get(cat, cat)
             cat_jobs = [(i, names[i], probs[i]) for i, c in enumerate(categories) if c == cat]
-            y_positions[cat] = (y_current, y_current + len(cat_jobs))
             
             for idx, (i, name, prob) in enumerate(cat_jobs):
                 y = y_current + idx
-                size = 100 + (prob / 100) * 400
-                ax.scatter(prob, y, s=size, c=colors[i], alpha=0.8, edgecolors='white', linewidth=1.5)
-                ax.annotate(name, (prob, y), xytext=(8, 0), textcoords='offset points',
-                           va='center', fontsize=9, color=COLORS['text'])
+                size = 80 + (prob / 100) * 300
+                ax.scatter(prob, y, s=size, c=colors[i], alpha=0.7, edgecolors='white', linewidth=1)
             
-            y_current += len(cat_jobs) + 0.8
+            # 类别标签（英文）
+            if cat_jobs:
+                mid_y = y_current + len(cat_jobs) / 2
+                ax.text(-8, mid_y, cat_en, fontsize=10, fontweight='bold', 
+                       va='center', ha='right', color=COLORS['text_light'])
+            
+            y_current += len(cat_jobs) + 0.5
         
         # 风险区域背景
-        ax.axvspan(0, 30, alpha=0.08, color=COLORS['low'])
-        ax.axvspan(30, 60, alpha=0.08, color=COLORS['medium'])
-        ax.axvspan(60, 100, alpha=0.08, color=COLORS['high'])
+        ax.axvspan(0, 30, alpha=0.1, color=COLORS['low'])
+        ax.axvspan(30, 60, alpha=0.1, color=COLORS['medium'])
+        ax.axvspan(60, 100, alpha=0.1, color=COLORS['high'])
         
         # 参考线
-        ax.axvline(x=30, color=COLORS['low'], linestyle='--', alpha=0.5, linewidth=1.5)
-        ax.axvline(x=60, color=COLORS['high'], linestyle='--', alpha=0.5, linewidth=1.5)
+        ax.axvline(x=30, color=COLORS['low'], linestyle='--', alpha=0.6, linewidth=2)
+        ax.axvline(x=60, color=COLORS['high'], linestyle='--', alpha=0.6, linewidth=2)
         
-        ax.set_xlabel('AI 替代概率 (%)', fontsize=11, fontweight='bold', color=COLORS['text'])
-        ax.set_title('AI 职业替代概率分布 (2-3 年预测)', fontsize=16, fontweight='bold', pad=20, color=COLORS['text'])
+        ax.set_xlabel(self.labels['x_prob'], fontsize=12, fontweight='bold')
+        ax.set_title(self.labels['title_cloud'], fontsize=14, fontweight='bold', pad=15)
         ax.set_xlim(-5, 105)
         ax.set_ylim(-1, len(names))
         ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         
-        # 风险标签
-        ax.text(15, -0.8, '🟢 低风险', color=COLORS['low'], fontweight='bold', ha='center', fontsize=10)
-        ax.text(45, -0.8, '🟡 中风险', color=COLORS['medium'], fontweight='bold', ha='center', fontsize=10)
-        ax.text(80, -0.8, '🔴 高风险', color=COLORS['high'], fontweight='bold', ha='center', fontsize=10)
+        # 图例
+        from matplotlib.patches import Patch
+        legend_elements = [
+            Patch(facecolor=COLORS['low'], alpha=0.7, label=f'{self.labels["low_risk"]} (<30%)'),
+            Patch(facecolor=COLORS['medium'], alpha=0.7, label=f'{self.labels["mid_risk"]} (30-60%)'),
+            Patch(facecolor=COLORS['high'], alpha=0.7, label=f'{self.labels["high_risk"]} (>60%)')
+        ]
+        ax.legend(handles=legend_elements, loc='upper right', framealpha=0.9)
         
         plt.tight_layout()
         output_path = os.path.join(self.output_dir, 'job_replacement_cloud_map.png')
@@ -123,34 +153,35 @@ class JobVisualizer:
     
     def create_heatmap(self) -> str:
         """创建类别 - 职业热力图"""
-        data = [{'职业': r['name'], '类别': r['category'], '概率': r['probability']} for r in self.results]
+        data = []
+        for r in self.results:
+            cat_en = self.category_en.get(r['category'], r['category'])
+            data.append({'job': r['name'], 'category': cat_en, 'prob': r['probability']})
         df = pd.DataFrame(data)
         
         # 按类别和概率排序
-        df = df.sort_values(['类别', '概率'], ascending=[True, False])
+        df = df.sort_values(['category', 'prob'], ascending=[True, False])
         
         # 创建透视表
-        pivot_table = df.pivot(index='职业', columns='类别', values='概率')
+        pivot_table = df.pivot(index='job', columns='category', values='prob')
         
-        fig, ax = plt.subplots(figsize=(12, 14))
+        fig, ax = plt.subplots(figsize=(14, 10))
         
-        # 自定义配色
         cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
             'custom_risk',
             [COLORS['low'], '#fbbf24', COLORS['high']],
             N=100
         )
         
-        # 热力图
-        sns.heatmap(pivot_table.T, annot=True, fmt='.0f', cmap=cmap,
+        sns.heatmap(pivot_table.T, annot=False, cmap=cmap,
                    vmin=0, vmax=100, center=50,
-                   cbar_kws={'label': '替代概率 (%)', 'shrink': 0.8},
+                   cbar_kws={'label': 'Probability (%)', 'shrink': 0.8},
                    linewidths=0.5, linecolor='white',
-                   ax=ax, annot_kws={'size': 8, 'weight': 'bold'})
+                   ax=ax)
         
-        ax.set_title('AI 职业替代概率热力图', fontsize=15, fontweight='bold', pad=20, color=COLORS['text'])
-        ax.set_xlabel('职业', fontsize=11, color=COLORS['text'])
-        ax.set_ylabel('类别', fontsize=11, color=COLORS['text'])
+        ax.set_title(self.labels['title_heatmap'], fontsize=14, fontweight='bold', pad=15)
+        ax.set_xlabel('Jobs', fontsize=11)
+        ax.set_ylabel(self.labels['category'], fontsize=11)
         
         plt.tight_layout()
         output_path = os.path.join(self.output_dir, 'job_replacement_heatmap.png')
@@ -170,28 +201,28 @@ class JobVisualizer:
         
         category_avg = {cat: np.mean(probs) for cat, probs in category_stats.items()}
         sorted_cats = sorted(category_avg.items(), key=lambda x: x[1], reverse=True)
-        categories = [c[0] for c in sorted_cats]
-        averages = [c[1] for c in sorted_cats]
         
-        # 柱状颜色
+        # 使用英文类别名
+        categories_en = [self.category_en.get(c[0], c[0]) for c in sorted_cats]
+        averages = [c[1] for c in sorted_cats]
         colors = [COLORS['low'] if avg < 30 else COLORS['medium'] if avg < 60 else COLORS['high'] for avg in averages]
         
-        fig, ax = plt.subplots(figsize=(12, 7))
+        fig, ax = plt.subplots(figsize=(10, 6))
         
-        bars = ax.barh(categories, averages, color=colors, edgecolor='white', linewidth=1.5)
+        bars = ax.barh(categories_en, averages, color=colors, edgecolor='white', linewidth=1.5)
         
         # 数值标签
         for bar, avg in zip(bars, averages):
-            ax.text(avg + 1.5, bar.get_y() + bar.get_height()/2,
-                   f'{avg:.1f}%', va='center', fontsize=10, fontweight='bold', color=COLORS['text'])
+            ax.text(avg + 1, bar.get_y() + bar.get_height()/2,
+                   f'{avg:.0f}%', va='center', fontsize=10, fontweight='bold')
         
-        ax.set_xlabel('平均替代概率 (%)', fontsize=11, fontweight='bold', color=COLORS['text'])
-        ax.set_title('各类别 AI 替代概率对比', fontsize=15, fontweight='bold', pad=20, color=COLORS['text'])
+        ax.set_xlabel(self.labels['x_avg'], fontsize=11, fontweight='bold')
+        ax.set_title(self.labels['title_bar'], fontsize=14, fontweight='bold', pad=15)
         ax.set_xlim(0, 100)
         
         # 参考线
-        ax.axvline(x=30, color=COLORS['low'], linestyle='--', alpha=0.6, linewidth=1.5)
-        ax.axvline(x=60, color=COLORS['high'], linestyle='--', alpha=0.6, linewidth=1.5)
+        ax.axvline(x=30, color=COLORS['low'], linestyle='--', alpha=0.6, linewidth=2)
+        ax.axvline(x=60, color=COLORS['high'], linestyle='--', alpha=0.6, linewidth=2)
         
         ax.grid(True, alpha=0.3, axis='x', linestyle='--')
         ax.spines['top'].set_visible(False)
@@ -208,9 +239,8 @@ class JobVisualizer:
         """创建概率分布直方图"""
         probs = [r['probability'] for r in self.results]
         
-        fig, ax = plt.subplots(figsize=(12, 6))
+        fig, ax = plt.subplots(figsize=(10, 5))
         
-        # 分段着色
         bins = np.linspace(0, 100, 21)
         n, bins, patches = ax.hist(probs, bins=bins, edgecolor='white', linewidth=0.5, alpha=0.9)
         
@@ -223,17 +253,21 @@ class JobVisualizer:
             else:
                 patch.set_facecolor(COLORS['high'])
         
-        ax.set_xlabel('AI 替代概率 (%)', fontsize=11, fontweight='bold', color=COLORS['text'])
-        ax.set_ylabel('职业数量', fontsize=11, fontweight='bold', color=COLORS['text'])
-        ax.set_title('职业替代概率分布', fontsize=15, fontweight='bold', pad=20, color=COLORS['text'])
+        ax.set_xlabel(self.labels['x_prob'], fontsize=11, fontweight='bold')
+        ax.set_ylabel(self.labels['y_count'], fontsize=11, fontweight='bold')
+        ax.set_title(self.labels['title_dist'], fontsize=14, fontweight='bold', pad=15)
         
         # 参考线
         ax.axvline(x=30, color=COLORS['low'], linestyle='--', alpha=0.7, linewidth=2)
         ax.axvline(x=60, color=COLORS['high'], linestyle='--', alpha=0.7, linewidth=2)
         
-        ax.text(15, max(n)*0.9, '低风险', color=COLORS['low'], fontweight='bold', ha='center', fontsize=11)
-        ax.text(45, max(n)*0.9, '中风险', color='#b45309', fontweight='bold', ha='center', fontsize=11)
-        ax.text(80, max(n)*0.9, '高风险', color=COLORS['high'], fontweight='bold', ha='center', fontsize=11)
+        # 区域标签
+        ax.text(15, max(n)*0.9, self.labels['low_risk'], color=COLORS['low'], 
+               fontweight='bold', ha='center', fontsize=11)
+        ax.text(45, max(n)*0.9, self.labels['mid_risk'], color='#b45309', 
+               fontweight='bold', ha='center', fontsize=11)
+        ax.text(80, max(n)*0.9, self.labels['high_risk'], color=COLORS['high'], 
+               fontweight='bold', ha='center', fontsize=11)
         
         ax.grid(True, alpha=0.3, axis='y', linestyle='--')
         ax.spines['top'].set_visible(False)
