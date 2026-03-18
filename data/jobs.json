@@ -1,0 +1,830 @@
+{
+  "jobs": [
+    {
+      "name": "数据录入员",
+      "category": "行政",
+      "skills": ["打字", "Excel", "数据核对"],
+      "dimensions": {
+        "creativity": 1,
+        "social_interaction": 2,
+        "repetition": 10,
+        "technical_dependency": 8,
+        "physical_dexterity": 3,
+        "critical_thinking": 1,
+        "emotional_intelligence": 1
+      }
+    },
+    {
+      "name": "电话客服",
+      "category": "服务",
+      "skills": ["沟通", "问题解决", "CRM 系统"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 7,
+        "repetition": 8,
+        "technical_dependency": 5,
+        "physical_dexterity": 1,
+        "critical_thinking": 3,
+        "emotional_intelligence": 6
+      }
+    },
+    {
+      "name": "翻译",
+      "category": "创意",
+      "skills": ["语言能力", "文化理解", "写作"],
+      "dimensions": {
+        "creativity": 6,
+        "social_interaction": 3,
+        "repetition": 5,
+        "technical_dependency": 7,
+        "physical_dexterity": 1,
+        "critical_thinking": 5,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "初级程序员",
+      "category": "技术",
+      "skills": ["编程", "调试", "Git"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 4,
+        "repetition": 6,
+        "technical_dependency": 9,
+        "physical_dexterity": 2,
+        "critical_thinking": 6,
+        "emotional_intelligence": 3
+      }
+    },
+    {
+      "name": "高级软件工程师",
+      "category": "技术",
+      "skills": ["系统设计", "架构", "团队领导"],
+      "dimensions": {
+        "creativity": 8,
+        "social_interaction": 6,
+        "repetition": 3,
+        "technical_dependency": 8,
+        "physical_dexterity": 2,
+        "critical_thinking": 9,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "放射科医生",
+      "category": "医疗",
+      "skills": ["影像诊断", "医学知识", "设备操作"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 3,
+        "repetition": 6,
+        "technical_dependency": 9,
+        "physical_dexterity": 4,
+        "critical_thinking": 8,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "外科医生",
+      "category": "医疗",
+      "skills": ["手术", "解剖学", "应急处理"],
+      "dimensions": {
+        "creativity": 6,
+        "social_interaction": 5,
+        "repetition": 4,
+        "technical_dependency": 7,
+        "physical_dexterity": 10,
+        "critical_thinking": 9,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "护士",
+      "category": "医疗",
+      "skills": ["护理", "病人沟通", "药物管理"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 9,
+        "repetition": 5,
+        "technical_dependency": 5,
+        "physical_dexterity": 7,
+        "critical_thinking": 6,
+        "emotional_intelligence": 9
+      }
+    },
+    {
+      "name": "小学教师",
+      "category": "教育",
+      "skills": ["教学", "课堂管理", "儿童心理"],
+      "dimensions": {
+        "creativity": 6,
+        "social_interaction": 9,
+        "repetition": 4,
+        "technical_dependency": 4,
+        "physical_dexterity": 3,
+        "critical_thinking": 7,
+        "emotional_intelligence": 9
+      }
+    },
+    {
+      "name": "大学教授",
+      "category": "教育",
+      "skills": ["研究", "教学", "学术写作"],
+      "dimensions": {
+        "creativity": 9,
+        "social_interaction": 6,
+        "repetition": 3,
+        "technical_dependency": 5,
+        "physical_dexterity": 2,
+        "critical_thinking": 10,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "会计师",
+      "category": "金融",
+      "skills": ["账务处理", "税务", "审计"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 4,
+        "repetition": 7,
+        "technical_dependency": 8,
+        "physical_dexterity": 2,
+        "critical_thinking": 5,
+        "emotional_intelligence": 3
+      }
+    },
+    {
+      "name": "金融分析师",
+      "category": "金融",
+      "skills": ["数据分析", "建模", "报告"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 5,
+        "repetition": 5,
+        "technical_dependency": 8,
+        "physical_dexterity": 2,
+        "critical_thinking": 8,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "银行柜员",
+      "category": "金融",
+      "skills": ["现金处理", "客户服务", "系统操作"],
+      "dimensions": {
+        "creativity": 1,
+        "social_interaction": 7,
+        "repetition": 8,
+        "technical_dependency": 6,
+        "physical_dexterity": 4,
+        "critical_thinking": 2,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "流水线工人",
+      "category": "制造",
+      "skills": ["装配", "质检", "设备操作"],
+      "dimensions": {
+        "creativity": 1,
+        "social_interaction": 2,
+        "repetition": 10,
+        "technical_dependency": 5,
+        "physical_dexterity": 6,
+        "critical_thinking": 1,
+        "emotional_intelligence": 2
+      }
+    },
+    {
+      "name": "机械工程师",
+      "category": "制造",
+      "skills": ["设计", "CAD", "项目管理"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 5,
+        "repetition": 3,
+        "technical_dependency": 8,
+        "physical_dexterity": 4,
+        "critical_thinking": 8,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "快递员",
+      "category": "服务",
+      "skills": ["配送", "路线规划", "客户沟通"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 6,
+        "repetition": 7,
+        "technical_dependency": 4,
+        "physical_dexterity": 5,
+        "critical_thinking": 3,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "餐厅服务员",
+      "category": "服务",
+      "skills": ["点餐", "上菜", "客户服务"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 8,
+        "repetition": 6,
+        "technical_dependency": 2,
+        "physical_dexterity": 6,
+        "critical_thinking": 2,
+        "emotional_intelligence": 6
+      }
+    },
+    {
+      "name": "厨师",
+      "category": "服务",
+      "skills": ["烹饪", "菜单设计", "食材管理"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 4,
+        "repetition": 5,
+        "technical_dependency": 3,
+        "physical_dexterity": 8,
+        "critical_thinking": 5,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "平面设计师",
+      "category": "创意",
+      "skills": ["设计软件", "创意思维", "品牌理解"],
+      "dimensions": {
+        "creativity": 8,
+        "social_interaction": 5,
+        "repetition": 4,
+        "technical_dependency": 7,
+        "physical_dexterity": 3,
+        "critical_thinking": 6,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "作家",
+      "category": "创意",
+      "skills": ["写作", "创意思维", "编辑"],
+      "dimensions": {
+        "creativity": 10,
+        "social_interaction": 3,
+        "repetition": 4,
+        "technical_dependency": 4,
+        "physical_dexterity": 2,
+        "critical_thinking": 8,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "记者",
+      "category": "创意",
+      "skills": ["采访", "写作", "调查"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 8,
+        "repetition": 4,
+        "technical_dependency": 5,
+        "physical_dexterity": 3,
+        "critical_thinking": 8,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "律师",
+      "category": "法律",
+      "skills": ["法律研究", "辩护", "文书"],
+      "dimensions": {
+        "creativity": 6,
+        "social_interaction": 7,
+        "repetition": 4,
+        "technical_dependency": 6,
+        "physical_dexterity": 2,
+        "critical_thinking": 9,
+        "emotional_intelligence": 6
+      }
+    },
+    {
+      "name": "法官",
+      "category": "法律",
+      "skills": ["审判", "法律解释", "决策"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 8,
+        "repetition": 5,
+        "technical_dependency": 4,
+        "physical_dexterity": 2,
+        "critical_thinking": 10,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "人力资源专员",
+      "category": "行政",
+      "skills": ["招聘", "员工关系", "培训"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 8,
+        "repetition": 5,
+        "technical_dependency": 5,
+        "physical_dexterity": 2,
+        "critical_thinking": 5,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "销售代表",
+      "category": "销售",
+      "skills": ["沟通", "谈判", "客户关系"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 9,
+        "repetition": 6,
+        "technical_dependency": 4,
+        "physical_dexterity": 2,
+        "critical_thinking": 5,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "市场营销经理",
+      "category": "销售",
+      "skills": ["策略规划", "数据分析", "团队管理"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 7,
+        "repetition": 3,
+        "technical_dependency": 6,
+        "physical_dexterity": 2,
+        "critical_thinking": 8,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "产品经理",
+      "category": "技术",
+      "skills": ["产品规划", "用户研究", "跨部门协作"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 8,
+        "repetition": 3,
+        "technical_dependency": 6,
+        "physical_dexterity": 2,
+        "critical_thinking": 8,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "UI/UX 设计师",
+      "category": "技术",
+      "skills": ["用户研究", "界面设计", "原型制作"],
+      "dimensions": {
+        "creativity": 8,
+        "social_interaction": 6,
+        "repetition": 3,
+        "technical_dependency": 7,
+        "physical_dexterity": 3,
+        "critical_thinking": 7,
+        "emotional_intelligence": 6
+      }
+    },
+    {
+      "name": "数据科学家",
+      "category": "技术",
+      "skills": ["机器学习", "统计分析", "编程"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 4,
+        "repetition": 3,
+        "technical_dependency": 9,
+        "physical_dexterity": 2,
+        "critical_thinking": 9,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "AI 工程师",
+      "category": "技术",
+      "skills": ["深度学习", "模型训练", "系统部署"],
+      "dimensions": {
+        "creativity": 8,
+        "social_interaction": 5,
+        "repetition": 3,
+        "technical_dependency": 10,
+        "physical_dexterity": 2,
+        "critical_thinking": 9,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "网络安全专家",
+      "category": "技术",
+      "skills": ["渗透测试", "安全审计", "应急响应"],
+      "dimensions": {
+        "creativity": 7,
+        "social_interaction": 4,
+        "repetition": 3,
+        "technical_dependency": 9,
+        "physical_dexterity": 2,
+        "critical_thinking": 9,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "心理咨询师",
+      "category": "医疗",
+      "skills": ["心理治疗", "倾听", "评估"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 10,
+        "repetition": 4,
+        "technical_dependency": 3,
+        "physical_dexterity": 2,
+        "critical_thinking": 7,
+        "emotional_intelligence": 10
+      }
+    },
+    {
+      "name": "物理治疗师",
+      "category": "医疗",
+      "skills": ["康复训练", "评估", "手法治疗"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 8,
+        "repetition": 5,
+        "technical_dependency": 4,
+        "physical_dexterity": 8,
+        "critical_thinking": 6,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "药剂师",
+      "category": "医疗",
+      "skills": ["药物知识", "配药", "用药指导"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 6,
+        "repetition": 6,
+        "technical_dependency": 7,
+        "physical_dexterity": 6,
+        "critical_thinking": 6,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "建筑工人",
+      "category": "制造",
+      "skills": ["施工", "设备操作", "安全规范"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 4,
+        "repetition": 7,
+        "technical_dependency": 4,
+        "physical_dexterity": 8,
+        "critical_thinking": 3,
+        "emotional_intelligence": 3
+      }
+    },
+    {
+      "name": "建筑师",
+      "category": "制造",
+      "skills": ["设计", "CAD", "项目管理"],
+      "dimensions": {
+        "creativity": 9,
+        "social_interaction": 6,
+        "repetition": 3,
+        "technical_dependency": 7,
+        "physical_dexterity": 3,
+        "critical_thinking": 8,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "电工",
+      "category": "制造",
+      "skills": ["电路安装", "维修", "安全检测"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 4,
+        "repetition": 5,
+        "technical_dependency": 5,
+        "physical_dexterity": 8,
+        "critical_thinking": 6,
+        "emotional_intelligence": 3
+      }
+    },
+    {
+      "name": "水管工",
+      "category": "制造",
+      "skills": ["管道安装", "维修", "故障诊断"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 5,
+        "repetition": 5,
+        "technical_dependency": 3,
+        "physical_dexterity": 8,
+        "critical_thinking": 6,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "司机",
+      "category": "服务",
+      "skills": ["驾驶", "路线规划", "车辆维护"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 4,
+        "repetition": 7,
+        "technical_dependency": 6,
+        "physical_dexterity": 7,
+        "critical_thinking": 4,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "飞行员",
+      "category": "服务",
+      "skills": ["飞行操作", "导航", "应急处理"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 4,
+        "repetition": 6,
+        "technical_dependency": 9,
+        "physical_dexterity": 8,
+        "critical_thinking": 8,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "空乘人员",
+      "category": "服务",
+      "skills": ["客户服务", "安全程序", "应急处理"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 9,
+        "repetition": 6,
+        "technical_dependency": 3,
+        "physical_dexterity": 5,
+        "critical_thinking": 5,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "图书管理员",
+      "category": "行政",
+      "skills": ["图书管理", "信息检索", "读者服务"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 6,
+        "repetition": 6,
+        "technical_dependency": 5,
+        "physical_dexterity": 4,
+        "critical_thinking": 4,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "保安",
+      "category": "服务",
+      "skills": ["巡逻", "监控", "应急处理"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 5,
+        "repetition": 7,
+        "technical_dependency": 4,
+        "physical_dexterity": 5,
+        "critical_thinking": 4,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "清洁工",
+      "category": "服务",
+      "skills": ["清洁", "消毒", "设备使用"],
+      "dimensions": {
+        "creativity": 1,
+        "social_interaction": 3,
+        "repetition": 9,
+        "technical_dependency": 2,
+        "physical_dexterity": 6,
+        "critical_thinking": 1,
+        "emotional_intelligence": 2
+      }
+    },
+    {
+      "name": "园艺师",
+      "category": "服务",
+      "skills": ["植物养护", "景观设计", "工具使用"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 4,
+        "repetition": 5,
+        "technical_dependency": 3,
+        "physical_dexterity": 7,
+        "critical_thinking": 4,
+        "emotional_intelligence": 3
+      }
+    },
+    {
+      "name": "摄影师",
+      "category": "创意",
+      "skills": ["摄影", "后期处理", "创意构思"],
+      "dimensions": {
+        "creativity": 8,
+        "social_interaction": 6,
+        "repetition": 4,
+        "technical_dependency": 6,
+        "physical_dexterity": 6,
+        "critical_thinking": 6,
+        "emotional_intelligence": 5
+      }
+    },
+    {
+      "name": "音乐家",
+      "category": "创意",
+      "skills": ["演奏", "作曲", "表演"],
+      "dimensions": {
+        "creativity": 10,
+        "social_interaction": 5,
+        "repetition": 5,
+        "technical_dependency": 4,
+        "physical_dexterity": 9,
+        "critical_thinking": 7,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "演员",
+      "category": "创意",
+      "skills": ["表演", "台词", "情感表达"],
+      "dimensions": {
+        "creativity": 9,
+        "social_interaction": 7,
+        "repetition": 4,
+        "technical_dependency": 3,
+        "physical_dexterity": 6,
+        "critical_thinking": 7,
+        "emotional_intelligence": 10
+      }
+    },
+    {
+      "name": "体育教练",
+      "category": "教育",
+      "skills": ["训练指导", "战术分析", "激励"],
+      "dimensions": {
+        "creativity": 6,
+        "social_interaction": 9,
+        "repetition": 4,
+        "technical_dependency": 4,
+        "physical_dexterity": 7,
+        "critical_thinking": 7,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "职业顾问",
+      "category": "服务",
+      "skills": ["咨询", "职业规划", "简历指导"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 9,
+        "repetition": 4,
+        "technical_dependency": 4,
+        "physical_dexterity": 2,
+        "critical_thinking": 6,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "房地产经纪人",
+      "category": "销售",
+      "skills": ["销售", "市场分析", "客户关系"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 9,
+        "repetition": 5,
+        "technical_dependency": 4,
+        "physical_dexterity": 3,
+        "critical_thinking": 5,
+        "emotional_intelligence": 8
+      }
+    },
+    {
+      "name": "保险代理人",
+      "category": "销售",
+      "skills": ["销售", "风险评估", "客户服务"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 8,
+        "repetition": 6,
+        "technical_dependency": 5,
+        "physical_dexterity": 2,
+        "critical_thinking": 5,
+        "emotional_intelligence": 7
+      }
+    },
+    {
+      "name": "采购专员",
+      "category": "行政",
+      "skills": ["供应商管理", "谈判", "成本控制"],
+      "dimensions": {
+        "creativity": 3,
+        "social_interaction": 7,
+        "repetition": 5,
+        "technical_dependency": 6,
+        "physical_dexterity": 2,
+        "critical_thinking": 5,
+        "emotional_intelligence": 6
+      }
+    },
+    {
+      "name": "物流专员",
+      "category": "行政",
+      "skills": ["调度", "跟踪", "协调"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 5,
+        "repetition": 6,
+        "technical_dependency": 6,
+        "physical_dexterity": 3,
+        "critical_thinking": 4,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "质量检验员",
+      "category": "制造",
+      "skills": ["检测", "记录", "标准执行"],
+      "dimensions": {
+        "creativity": 2,
+        "social_interaction": 3,
+        "repetition": 8,
+        "technical_dependency": 5,
+        "physical_dexterity": 6,
+        "critical_thinking": 4,
+        "emotional_intelligence": 2
+      }
+    },
+    {
+      "name": "研发工程师",
+      "category": "技术",
+      "skills": ["创新研究", "实验设计", "论文写作"],
+      "dimensions": {
+        "creativity": 9,
+        "social_interaction": 4,
+        "repetition": 3,
+        "technical_dependency": 8,
+        "physical_dexterity": 4,
+        "critical_thinking": 9,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "专利代理人",
+      "category": "法律",
+      "skills": ["专利撰写", "法律分析", "技术理解"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 5,
+        "repetition": 5,
+        "technical_dependency": 6,
+        "physical_dexterity": 2,
+        "critical_thinking": 8,
+        "emotional_intelligence": 4
+      }
+    },
+    {
+      "name": "社会工作者",
+      "category": "服务",
+      "skills": ["咨询", "资源协调", "危机干预"],
+      "dimensions": {
+        "creativity": 4,
+        "social_interaction": 10,
+        "repetition": 4,
+        "technical_dependency": 3,
+        "physical_dexterity": 3,
+        "critical_thinking": 6,
+        "emotional_intelligence": 10
+      }
+    },
+    {
+      "name": "宠物美容师",
+      "category": "服务",
+      "skills": ["美容", "护理", "动物行为"],
+      "dimensions": {
+        "creativity": 5,
+        "social_interaction": 5,
+        "repetition": 5,
+        "technical_dependency": 2,
+        "physical_dexterity": 8,
+        "critical_thinking": 4,
+        "emotional_intelligence": 6
+      }
+    }
+  ]
+}
