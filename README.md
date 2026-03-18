@@ -73,6 +73,40 @@ python main.py
 
 ---
 
+## 📈 可视化图表
+
+### 职业替代概率云图
+
+![职业替代概率云图](docs/images/job_replacement_cloud_map.png)
+
+*展示所有职业的替代概率分布，按类别分组，颜色表示风险等级*
+
+---
+
+### 类别热力图
+
+![类别热力图](docs/images/job_replacement_heatmap.png)
+
+*按类别展示各职业的替代概率，颜色越红表示风险越高*
+
+---
+
+### 类别平均概率对比
+
+![类别对比图](docs/images/category_comparison.png)
+
+*各类别平均替代概率排名，帮助识别高风险行业*
+
+---
+
+### 概率分布直方图
+
+![分布图](docs/images/probability_distribution.png)
+
+*所有职业替代概率的分布情况，了解整体风险分布*
+
+---
+
 ## 📊 示例输出
 
 ### 高风险职业示例
